@@ -1,0 +1,16 @@
+PODS:
+  - ios (0.0.1)
+
+DEPENDENCIES:
+  - ios (from `../common/umbrella/ios`)
+
+EXTERNAL SOURCES:
+  ios:
+    :path: "../common/umbrella/ios"
+
+SPEC CHECKSUMS:
+  ios: 50f0a37031b4361259aaa0b8bbe615a067853980
+
+PODFILE CHECKSUM: 8483582f427f80cb924a35632be63ef40f131e29
+
+COCOAPODS: 1.15.2
