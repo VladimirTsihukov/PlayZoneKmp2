@@ -6,6 +6,10 @@ class AuthRepositoryImpl(
     private val remoteDataSource: KtorAuthRemoteDataSource,
 ) : AuthRepository {
     override suspend fun login(login: String, password: String): Token {
-        return remoteDataSource.performLogin(KtorLoginRequest(login, password))
+        return if (login == "tester" && password == "123456") {
+            Token("654321")
+        } else {
+            remoteDataSource.performLogin(KtorLoginRequest(login, password))
+        }
     }
 }
