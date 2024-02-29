@@ -8,8 +8,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(project(":common:games:api"))
-                implementation(project(":common:core"))
+                implementation(Dependencies.Kotlin.Serialization.serialization)
             }
         }
     }

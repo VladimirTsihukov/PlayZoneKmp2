@@ -1,5 +1,6 @@
 package navigation
 
+import forgot.ForgotScreen
 import login.LoginScreen
 import registration.RegistrationScreen
 import ru.alexgladkov.odyssey.compose.extensions.flow
@@ -17,7 +18,7 @@ fun RootComposeBuilder.authFlow() {
         }
 
         screen(name = NavigationTree.Auth.ForgotPassword.name) {
-            LoginScreen()
+            ForgotScreen()
         }
     }
 }

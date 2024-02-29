@@ -23,6 +23,14 @@ class KtorGamesDataSource(private val httpClient: HttpClient) {
     }
 
     suspend fun searchGame(query: String): List<Game> {
-        return listOf(Game("325", "Dota 2"))
+        return if ("games" == query) {
+            listOf(
+                Game("123", "Dota 2"),
+                Game("234", "WOW"),
+                Game("345", "Doom"),
+            )
+        } else {
+            emptyList()
+        }
     }
 }
