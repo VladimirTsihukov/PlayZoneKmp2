@@ -30,7 +30,7 @@ class SearchViewModel : BaseSharedViewModel<SearchViewState, SearchAction, Searc
 
     private fun searchGame(query: String) {
         searchJob = viewModelScope.launch {
-            viewState.copy(query = query)
+            viewState = viewState.copy(query = query)
             searchJob?.cancel()
             delay(500)
 
