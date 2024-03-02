@@ -12,26 +12,20 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import login.models.LoginEvent
 import login.models.LoginViewState
-import theme.AppTheme
 import theme.Theme
+import widgets.CommonTextField
 
 @Composable
 fun LoginView(state: LoginViewState, eventHolder: (LoginEvent) -> Unit) {
@@ -57,60 +51,28 @@ fun LoginView(state: LoginViewState, eventHolder: (LoginEvent) -> Unit) {
 
         Spacer(modifier = Modifier.height(50.dp))
 
-        TextField(
-            value = state.email,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            enabled = !state.isSending,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF1F2430),
-                textColor = Color(0xFF696C75),
-                cursorColor = Theme.colors.highlightTextColor,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-            ),
-            placeholder = {
-                Text(text = "You login", color = Theme.colors.hintTextColor)
-            },
-            shape = RoundedCornerShape(10.dp),
-            onValueChange = {
-                eventHolder.invoke(LoginEvent.EmailChanged(it))
-            })
+        CommonTextField(text = state.email, hint = "Your login", enabled = !state.isSending) {
+            eventHolder.invoke(LoginEvent.EmailChanged(it))
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        TextField(
-            value = state.password,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
+        CommonTextField(
+            text = state.password,
+            hint = "Your password",
             enabled = !state.isSending,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF1F2430),
-                textColor = Color(0xFF696C75),
-                cursorColor = Theme.colors.highlightTextColor,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-            ),
-            visualTransformation = if (state.passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
-            placeholder = {
-                Text(text = "You password", color = Theme.colors.hintTextColor)
-            },
+            isSecure = state.passwordHidden,
             trailingIcon = {
                 Icon(
                     imageVector = if (state.passwordHidden) Icons.Outlined.Clear else Icons.Outlined.Lock,
                     contentDescription = "",
-                    modifier = Modifier.clickable {
-                        eventHolder.invoke(LoginEvent.PasswordShowClick)
-                    },
+                    modifier = Modifier.clickable { eventHolder.invoke(LoginEvent.PasswordShowClick) },
                     tint = Theme.colors.highlightTextColor,
                 )
-            },
-            shape = RoundedCornerShape(10.dp),
-            onValueChange = {
-                eventHolder.invoke(LoginEvent.PasswordChanged(it))
-            })
+            }
+        ) {
+            eventHolder.invoke(LoginEvent.PasswordChanged(it))
+        }
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -145,17 +107,6 @@ fun LoginView(state: LoginViewState, eventHolder: (LoginEvent) -> Unit) {
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
             )
-        }
-    }
-}
-
-
-@Composable
-@Preview()
-fun LoginViewPreview() {
-    AppTheme {
-        LoginView(state = LoginViewState("email", "password")) {
-
         }
     }
 }
