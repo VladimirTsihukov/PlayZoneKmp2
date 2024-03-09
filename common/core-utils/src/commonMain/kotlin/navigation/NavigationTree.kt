@@ -23,4 +23,11 @@ object NavigationTree {
         Search,
         Videos,
     }
+
+    enum class Admin {
+        Dashboard,
+        Games,
+        Events,
+        CreateGame,
+    }
 }

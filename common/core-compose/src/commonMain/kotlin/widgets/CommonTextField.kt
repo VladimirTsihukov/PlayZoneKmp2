@@ -31,7 +31,7 @@ fun CommonTextField(
         enabled = enabled,
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color(0xFF1F2430),
-            textColor = Color(0xFF696C75),
+            textColor = Theme.colors.secondaryTextColor,
             cursorColor = Theme.colors.highlightTextColor,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,

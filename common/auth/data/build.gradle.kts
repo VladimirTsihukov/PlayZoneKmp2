@@ -9,7 +9,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(project(":common:auth:api"))
-                implementation(project(":common:games:api"))
                 implementation(project(":common:core"))
 
                 implementation(Dependencies.Kodein.core)

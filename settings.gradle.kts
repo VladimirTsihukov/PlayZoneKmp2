@@ -16,6 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "PlayZoneKmp2"
 include(":androidApp")
+include(":desktop")
 include(":common:auth:api")
 include(":common:auth:compose")
 include(":common:auth:data")
@@ -24,9 +25,7 @@ include(":common:core-compose")
 include(":common:core-utils")
 include(":common:core:api")
 include(":common:games:api")
-include(":common:games:compose")
 include(":common:games:data")
-include(":common:games:presentation")
 include(":common:main:api")
 include(":common:main:compose")
 include(":common:main:data")

@@ -9,11 +9,12 @@ kotlin {
             dependencies {
                 implementation(project(":common:auth:compose"))
                 implementation(project(":common:auth:data"))
+
                 implementation(project(":common:core"))
                 implementation(project(":common:core-compose"))
                 implementation(project(":common:core-utils"))
+
                 implementation(project(":common:games:data"))
-                implementation(project(":common:tournaments:data"))
                 implementation(project(":common:main:compose"))
 
                 implementation(Dependencies.Other.ViewModel.core)
