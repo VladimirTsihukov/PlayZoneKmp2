@@ -9,20 +9,18 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":common:core"))
-                implementation(project(":common:core-compose"))
-                implementation(project(":common:core-utils"))
-                implementation(project(":common:auth:compose"))
-                implementation(project(":common:games:api"))
-                implementation(project(":common:main:compose"))
-                implementation(project(":common:umbrella:core"))
-                implementation(project(":common:umbrella:compose"))
+        commonMain.dependencies {
+            implementation(project(":common:core"))
+            implementation(project(":common:core-compose"))
+            implementation(project(":common:core-utils"))
+            implementation(project(":common:auth:compose"))
+            implementation(project(":common:games:api"))
+            implementation(project(":common:main:compose"))
+            implementation(project(":common:umbrella:core"))
+            implementation(project(":common:umbrella:compose"))
 
-                implementation(Dependencies.Other.Navigation.core)
-                implementation(Dependencies.Other.Navigation.compose)
-            }
+            implementation(libs.odyssey.core)
+            implementation(libs.odyssey.compose)
         }
 
         named("jvmMain") {

@@ -1,18 +1,19 @@
 plugins {
     id("multiplatform-setup")
-    id("android-setup")
 }
 
 kotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":common:auth:api"))
-                implementation(project(":common:core"))
-                implementation(project(":common:games:api"))
+        commonMain.dependencies {
+            implementation(project(":common:auth:api"))
+            implementation(project(":common:core"))
+            implementation(project(":common:games:api"))
 
-                implementation(Dependencies.Other.ViewModel.core)
-            }
+            implementation(libs.kviewmodel.core)
         }
     }
+}
+
+android {
+    namespace = "com.tishukoff.playzonekmp.common.auth.presentation"
 }

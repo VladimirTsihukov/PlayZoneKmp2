@@ -1,19 +1,20 @@
 plugins {
     id("multiplatform-setup")
-    id("android-setup")
-    kotlin("plugin.serialization")
+    id(libs.plugins.serialization.get().pluginId)
 }
 
 kotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":common:auth:api"))
-                implementation(project(":common:core"))
+        commonMain.dependencies {
+            implementation(project(":common:auth:api"))
+            implementation(project(":common:core"))
 
-                implementation(Dependencies.Kodein.core)
-                implementation(Dependencies.Settings.core)
-            }
+            implementation(libs.kodein.di)
+            implementation(libs.multiplatform.settings.core)
         }
     }
+}
+
+android {
+    namespace = "com.tishukoff.playzonekmp.common.auth.data"
 }

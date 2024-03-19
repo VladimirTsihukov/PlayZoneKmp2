@@ -1,23 +1,32 @@
 plugins {
     id("com.android.library")
+    id("org.jetbrains.compose")
     kotlin("multiplatform")
-    kotlin("kapt")
-
 }
 
 kotlin {
-    jvm("desktop")
-    android()
-    //ios()
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
+    js {
+        browser()
+        binaries.executable()
     }
 
+    jvm("desktop")
+
+    iosArm64()
+    iosSimulatorArm64()
+    iosX64()
+
+    androidTarget()
+
+    jvmToolchain(17)
+
     sourceSets {
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+        }
+
         val commonMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -30,4 +39,8 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
         }
     }
+}
+
+android {
+    compileSdk = 34
 }

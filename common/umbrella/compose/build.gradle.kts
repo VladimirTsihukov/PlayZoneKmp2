@@ -1,35 +1,34 @@
 plugins {
-    id("multiplatform-compose-setup")
-    id("android-setup")
+    id("multiplatform-setup")
 }
 
 kotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":common:auth:compose"))
-                implementation(project(":common:auth:data"))
+        commonMain.dependencies {
+            implementation(project(":common:auth:compose"))
+            implementation(project(":common:auth:data"))
 
-                implementation(project(":common:core"))
-                implementation(project(":common:core-compose"))
-                implementation(project(":common:core-utils"))
+            implementation(project(":common:core"))
+            implementation(project(":common:core-compose"))
+            implementation(project(":common:core-utils"))
 
-                implementation(project(":common:games:data"))
-                implementation(project(":common:main:compose"))
+            implementation(project(":common:games:data"))
+            implementation(project(":common:main:compose"))
 
-                implementation(Dependencies.Other.ViewModel.core)
-                implementation(Dependencies.Other.ViewModel.compose)
-                implementation(Dependencies.Other.ViewModel.odyssey)
+            implementation(libs.kviewmodel.core)
+            implementation(libs.kviewmodel.compose)
+            implementation(libs.kviewmodel.odyssey)
 
-                implementation(Dependencies.Other.Navigation.compose)
-                implementation(Dependencies.Other.Navigation.core)
-            }
+            implementation(libs.odyssey.core)
+            implementation(libs.odyssey.compose)
         }
 
-        androidMain {
-            dependencies {
-                implementation(Dependencies.Android.composeActivity)
-            }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
         }
     }
+}
+
+android {
+    namespace = "com.tishukoff.playzonekmp.common.umbrella.compose"
 }
