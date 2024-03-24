@@ -32,7 +32,7 @@ fun LoginScreen() {
 
             LoginAction.OpenRegistrationScreen -> rootController.push(NavigationTree.Auth.Register.name)
 
-            null -> Unit
+            else -> Unit
         }
     }
 }

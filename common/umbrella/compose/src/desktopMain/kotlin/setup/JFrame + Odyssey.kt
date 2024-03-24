@@ -4,11 +4,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.awt.ComposePanel
 import navigation.NavigationSource
 import navigation.NavigationTree
-import navigation.generateGraph
+import navigation.navigationGraph
 import ru.alexgladkov.odyssey.compose.base.Navigator
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.compose.navigation.RootComposeBuilder
 import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalNavigator
+import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.configuration.DefaultModalConfiguration
+import ru.alexgladkov.odyssey.core.configuration.DisplayType
 import theme.AppTheme
 import theme.Theme
 import java.awt.BorderLayout
@@ -17,7 +19,7 @@ import javax.swing.WindowConstants
 
 fun JFrame.setupThemeNavigation() {
     val rootController = RootComposeBuilder().apply {
-        generateGraph(NavigationSource.Desktop)
+        navigationGraph(NavigationSource.Desktop)
     }.build()
 
     defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
@@ -32,7 +34,7 @@ fun JFrame.setupThemeNavigation() {
                 val backgroundColor = Theme.colors.primaryBackground
                 rootController.backgroundColor = backgroundColor
 
-                ModalNavigator {
+                ModalNavigator(configuration = DefaultModalConfiguration(backgroundColor, DisplayType.FullScreen)) {
                     Navigator(startScreen = NavigationTree.Splash.SplashScreen.name)
                 }
             }

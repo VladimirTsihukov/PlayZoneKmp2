@@ -1,3 +1,5 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 plugins {
     id(libs.plugins.android.get().pluginId)
     id(libs.plugins.kotlin.get().pluginId)
@@ -7,10 +9,12 @@ plugins {
 kotlin {
     jvmToolchain(17)
     androidTarget()
+    jvm()
 
     sourceSets {
         commonMain.dependencies {
             implementation(project(":common:core"))
+            implementation(project(":common:core-compose"))
             implementation(project(":common:games:api"))
             implementation(project(":common:umbrella:compose"))
             implementation(project(":common:umbrella:core"))
@@ -26,6 +30,10 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.androidx.appcompat)
             implementation(libs.androidx.activity.compose)
+        }
+
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
         }
     }
 }
@@ -53,6 +61,18 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+        }
+    }
+}
+
+compose.desktop {
+    application {
+        mainClass = "Main_desktopKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Exe, TargetFormat.Deb)
+            packageName = "com.tishukoff.playzonekmp.mobile.desktop"
+            packageVersion = "1.0.0"
         }
     }
 }

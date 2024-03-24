@@ -6,7 +6,6 @@ object NavigationTree {
         SplashScreen
     }
 
-
     enum class Auth {
         AuthFlow,
         Login,

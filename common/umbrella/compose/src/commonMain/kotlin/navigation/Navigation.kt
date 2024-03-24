@@ -12,7 +12,7 @@ enum class NavigationSource {
     Desktop, Android, IOS
 }
 
-fun RootComposeBuilder.generateGraph(source: NavigationSource) {
+fun RootComposeBuilder.navigationGraph(source: NavigationSource) {
     screen(name = NavigationTree.Splash.SplashScreen.name) {
         SplashScreen()
     }
