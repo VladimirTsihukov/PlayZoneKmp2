@@ -1,6 +1,6 @@
 package sqldelight
 
-import com.tishukoff.playzonekmp.Database
+import com.tishukoff.playzonekmp2.Database
 import database.DatabaseDriverFactory
 
 class SqlDelightGamesDataSource(private val dbDriverFactory: DatabaseDriverFactory) {

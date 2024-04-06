@@ -1,3 +1,4 @@
+/*
 package setup
 
 import androidx.compose.runtime.CompositionLocalProvider
@@ -45,4 +46,4 @@ fun JFrame.setupThemeNavigation() {
     setSize(800, 600)
     setLocationRelativeTo(null)
     isVisible = true
-}
+}*/

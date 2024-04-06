@@ -7,7 +7,6 @@ plugins {
 kotlin {
     js {
         browser()
-        binaries.executable()
     }
 
     jvm("desktop")
@@ -27,7 +26,7 @@ kotlin {
             implementation(compose.material)
         }
 
-        val commonMain by getting
+/*        val commonMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -37,7 +36,7 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-        }
+        }*/
     }
 }
 

@@ -5,9 +5,9 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":common:auth:api"))
-            implementation(project(":common:core"))
-            implementation(project(":common:games:api"))
+            api(project(":common:auth:api"))
+            api(project(":common:core"))
+            api(project(":common:games:api"))
 
             implementation(libs.kviewmodel.core)
         }

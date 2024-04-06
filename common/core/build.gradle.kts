@@ -7,16 +7,18 @@ plugins {
 sqldelight {
     databases {
         create("Database") {
-            packageName = "com.tishukoff.playzonekmp"
+            packageName.set("com.tishukoff.playzonekmp2")
             generateAsync.set(true) //Needed for working JS
         }
     }
+    linkSqlite = true
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
             api(libs.kotlinx.serialization.core)
+            api(libs.kotlinx.coroutines)
 
             api(libs.ktor.client.core)
             implementation(libs.ktor.client.json)
@@ -48,6 +50,7 @@ kotlin {
         jsMain.dependencies {
             implementation(libs.sqldelight.js.driver)
             implementation(npm("sql.js", "1.6.2"))
+            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.0.1"))
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
         }
     }

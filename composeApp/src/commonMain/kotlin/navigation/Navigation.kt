@@ -9,7 +9,7 @@ import ru.alexgladkov.odyssey.compose.extensions.screen
 import ru.alexgladkov.odyssey.compose.navigation.RootComposeBuilder
 
 enum class NavigationSource {
-    Desktop, Android, IOS
+    Desktop, Android, IOS, Web
 }
 
 fun RootComposeBuilder.navigationGraph(source: NavigationSource) {
@@ -24,7 +24,7 @@ fun RootComposeBuilder.navigationGraph(source: NavigationSource) {
     authFlow()
 
     when (source) {
-        NavigationSource.Desktop -> {
+        NavigationSource.Desktop, NavigationSource.Web -> {
             adminFlow()
 
             screen(name = NavigationTree.Admin.CreateGame.name) {

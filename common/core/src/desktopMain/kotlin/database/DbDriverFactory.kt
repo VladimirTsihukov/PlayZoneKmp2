@@ -7,6 +7,6 @@ import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 
 actual class DatabaseDriverFactory actual constructor(private val platformConfiguration: PlatformConfiguration) {
-    actual suspend fun provideDbDriver(scheme: SqlSchema<QueryResult.AsyncValue<Unit>>): SqlDriver =
-        JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).also { scheme.create(it).await() }
+    actual suspend fun provideDbDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>): SqlDriver =
+        JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).also { schema.create(it).await() }
 }

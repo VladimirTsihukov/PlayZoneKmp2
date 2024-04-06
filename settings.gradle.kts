@@ -1,31 +1,28 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
         google()
         gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
 }
 
 dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    }
-}
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
     }
 }
 
 rootProject.name = "PlayZoneKmp2"
 include(":composeApp")
-include(":desktop")
 include(":common:auth:api")
 include(":common:auth:compose")
 include(":common:auth:data")
@@ -41,4 +38,3 @@ include(":common:main:data")
 include(":common:main:presentation")
 include(":common:umbrella:compose")
 include(":common:umbrella:core")
-//include(":common:umbrella:ios")

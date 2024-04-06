@@ -8,6 +8,6 @@ import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 
 actual class DatabaseDriverFactory actual constructor(private val platformConfiguration: PlatformConfiguration) {
-    actual suspend fun provideDbDriver(scheme: SqlSchema<QueryResult.AsyncValue<Unit>>): SqlDriver =
-        NativeSqliteDriver(scheme.synchronous(), "playzone.db")
+    actual suspend fun provideDbDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>): SqlDriver =
+        NativeSqliteDriver(schema.synchronous(), "playzone.db")
 }

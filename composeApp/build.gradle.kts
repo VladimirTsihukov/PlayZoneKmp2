@@ -11,6 +11,31 @@ plugins {
 version = "0.0.1"
 
 kotlin {
+    jvmToolchain(17)
+    androidTarget()
+    jvm()
+
+    js {
+        moduleName = "composeApp"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+            }
+        }
+        binaries.executable()
+    }
+
+    listOf(
+        iosArm64(),
+        iosX64(),
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = false
+            linkerOpts.add("-lsqlite3")
+        }
+    }
 
     cocoapods {
         summary = "PlayZone iOS SDK"
@@ -32,44 +57,35 @@ kotlin {
         }
     }
 
-    jvmToolchain(17)
-    androidTarget()
-    jvm()
-
-    listOf(
-        iosArm64(),
-        iosX64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = false
-            linkerOpts.add("-lsqLite3")
-        }
-    }
-
     targets.withType<KotlinNativeTarget> {
         binaries {
             all {
-                linkerOpts("-lsqLite3")
+                linkerOpts("-lsqlite3")
             }
         }
     }
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":common:auth:compose"))
             implementation(project(":common:core"))
             implementation(project(":common:core-compose"))
+            implementation(project(":common:core-utils"))
             implementation(project(":common:games:api"))
-            implementation(project(":common:umbrella:compose"))
+            implementation(project(":common:main:compose"))
             implementation(project(":common:umbrella:core"))
 
             implementation(compose.runtime)
             implementation(compose.ui)
             implementation(compose.foundation)
+            implementation(compose.material)
 
             implementation(libs.odyssey.compose)
             implementation(libs.odyssey.core)
+
+            implementation(libs.kviewmodel.core)
+            implementation(libs.kviewmodel.compose)
+            implementation(libs.kviewmodel.odyssey)
         }
 
         androidMain.dependencies {
@@ -79,6 +95,10 @@ kotlin {
 
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
+        }
+
+        jsMain.dependencies {
+            implementation(compose.html.core)
         }
 
         iosMain.dependencies {
@@ -130,4 +150,8 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+compose.experimental {
+    web.application {}
 }
